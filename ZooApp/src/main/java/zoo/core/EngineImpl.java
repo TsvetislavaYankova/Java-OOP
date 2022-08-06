@@ -1,38 +1,45 @@
 package zoo.core;
 
 import zoo.common.Command;
+import zoo.io.interfaces.InputReader;
+import zoo.io.interfaces.OutputWriter;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class EngineImpl implements Engine {
+    private InputReader reader;
+    private OutputWriter writer;
     private Controller controller;
-    private BufferedReader reader;
 
-    public EngineImpl() {
-        this.controller = new ControllerImpl();
-        this.reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public EngineImpl(InputReader reader, OutputWriter writer, Controller controller) {
+        this.reader = reader;
+        this.writer = writer;
+        this.controller = controller;
     }
 
     @Override
     public void run() {
         while (true) {
-            String result = null;
-            try {
-                result = processInput();
+            while (true) {
+                String result = null;
+                try {
+                    result = processInput();
 
-                if (result.equals("Exit")) {
-                    break;
+                    if (result.equals(Command.Exit.name())) {
+                        break;
+                    }
+
+                } catch (IOException | IllegalArgumentException | NullPointerException e) {
+                    result = e.getMessage();
                 }
-            } catch (NullPointerException | IllegalArgumentException | IllegalStateException | IOException e) {
-                result = e.getMessage();
-            }
 
-            System.out.println(result);
+                this.writer.writeLine(result);
+            }
         }
     }
+
     private String processInput() throws IOException {
         String input = this.reader.readLine();
         String[] tokens = input.split("\\s+");
@@ -69,38 +76,32 @@ public class EngineImpl implements Engine {
         }
         return result;
     }
+
     private String addArea(String[] data) {
-        //TODO
-        return null;
+        return controller.addArea(data[0], data[1]);
     }
 
     private String buyFood(String[] data) {
-        //TODO
-        return null;
+        return controller.buyFood(data[0]);
     }
 
     private String foodForArea(String[] data) {
-        //TODO
-        return null;
+        return controller.foodForArea(data[0], data[1]);
     }
 
     private String addAnimal(String[] data) {
-        //TODO
-        return null;
+        return controller.addAnimal(data[0], data[1], data[2], data[3], Double.parseDouble(data[4]));
     }
 
     private String feedAnimal(String[] data) {
-        //TODO
-        return null;
+        return controller.feedAnimal(data[0]);
     }
 
     private String calculateKg(String[] data) {
-        //TODO
-        return null;
+        return controller.calculateKg(data[0]);
     }
 
     private String getStatistics() {
-        //TODO
-        return null;
+        return controller.getStatistics();
     }
 }

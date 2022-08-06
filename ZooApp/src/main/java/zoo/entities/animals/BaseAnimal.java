@@ -40,6 +40,7 @@ public abstract class BaseAnimal implements Animal {
         }
         this.price = price;
     }
+
     @Override
     public String getName() {
         return this.name;

@@ -6,13 +6,13 @@ import zoo.entities.foods.Food;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public abstract class BaseArea implements Area {
 
     private String name;
     private int capacity;
 
-    private int currentNumberOfAnimals;
     private Collection<Food> foods;
     private Collection<Animal> animals;
 
@@ -21,7 +21,6 @@ public abstract class BaseArea implements Area {
         this.setCapacity(capacity);
         foods = new ArrayList<>();
         animals = new ArrayList<>();
-        currentNumberOfAnimals = 0;
     }
 
     private void setCapacity(int capacity) {
@@ -46,7 +45,7 @@ public abstract class BaseArea implements Area {
 
     @Override
     public void addAnimal(Animal animal) {
-        if (this.currentNumberOfAnimals >= this.capacity) {
+        if (animals.size() == this.capacity) {
             throw new IllegalStateException(ExceptionMessages.NOT_ENOUGH_CAPACITY);
         }
         if (this.getClass().getSimpleName().equals("LandArea") && animal.getClass().getSimpleName().equals("AquaticAnimal")) {
@@ -56,15 +55,11 @@ public abstract class BaseArea implements Area {
             return;
         }
         this.animals.add(animal);
-        currentNumberOfAnimals++;
     }
 
     @Override
     public void removeAnimal(Animal animal) {
-        if (this.animals.remove(animal)) {
-            this.animals.remove(animal);
-            currentNumberOfAnimals--;
-        }
+        this.animals.remove(animal);
     }
 
     @Override
@@ -81,21 +76,26 @@ public abstract class BaseArea implements Area {
 
     @Override
     public String getInfo() {
-        String desiredString;
-        StringBuilder animalNames = new StringBuilder();
-        animals.forEach(animal -> animalNames.append(animal.getName()).append(" ").deleteCharAt(animalNames.length() - 1));
+        StringBuilder output = new StringBuilder()
+                .append(String.format("%s (%s):", this.name, this.getClass().getSimpleName()))
+                .append(System.lineSeparator())
+                .append("Animals: ");
+
         if (this.animals.size() == 0) {
-            desiredString = String.format("%s (%s):", this.name, this.getClass().getSimpleName()) + System.lineSeparator() +
-                    "Animals: none" + System.lineSeparator() +
-                    String.format("Foods: %d", this.foods.size()) + System.lineSeparator() +
-                    String.format("Calories: %d", this.sumCalories());
+            output.append("none");
         } else {
-            desiredString = String.format("%s (%s):", this.name, this.getClass().getSimpleName()) + System.lineSeparator() +
-                    "Animals: " + animalNames.toString() + System.lineSeparator() +
-                    String.format("Foods: %d", this.foods.size()) + System.lineSeparator() +
-                    String.format("Calories: %d", this.sumCalories());
+            output.append(this.animals.stream().map(animal -> animal.getName()).collect(Collectors.joining(" ")));
         }
-        return desiredString;
+
+        output
+                .append(System.lineSeparator())
+                .append("Foods: ")
+                .append(this.foods.size())
+                .append(System.lineSeparator())
+                .append("Calories: ")
+                .append(this.sumCalories());
+
+        return output.toString();
     }
 
     @Override
@@ -113,5 +113,9 @@ public abstract class BaseArea implements Area {
         return this.foods;
     }
 
+    @Override
+    public int getCapacity() {
+        return this.capacity;
+    }
 
 }
