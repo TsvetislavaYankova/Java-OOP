@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../Java_Advanced_Lectures-main/ChristmasRaces/ChristmasRaces.iml" filepath="$PROJECT_DIR$/../../Java_Advanced_Lectures-main/ChristmasRaces/ChristmasRaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Projects/ChristmasRaces/ChristmasRaces1.iml" filepath="$PROJECT_DIR$/../../Projects/ChristmasRaces/ChristmasRaces1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../01. High Quality Structure_Skeleton/Skeleton-OOP/Skeleton-OOP.iml" filepath="$PROJECT_DIR$/../../01. High Quality Structure_Skeleton/Skeleton-OOP/Skeleton-OOP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../01. High Quality Structure_Skeleton/Skeleton-OOP/Skeleton-OOP1.iml" filepath="$PROJECT_DIR$/../01. High Quality Structure_Skeleton/Skeleton-OOP/Skeleton-OOP1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Exam 18 April/ZooApp/ZooApp.iml" filepath="$PROJECT_DIR$/../../Exam 18 April/ZooApp/ZooApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../OOP Git/Java-OOP/ZooApp/ZooApp1.iml" filepath="$PROJECT_DIR$/../../OOP Git/Java-OOP/ZooApp/ZooApp1.iml" />
+      <module fileurl="file://$USER_HOME$/OneDrive/Работен плот/ZooHelp/ZooHelp.iml" filepath="$USER_HOME$/OneDrive/Работен плот/ZooHelp/ZooHelp.iml" />
+    </modules>
+  </component>
+</project>
