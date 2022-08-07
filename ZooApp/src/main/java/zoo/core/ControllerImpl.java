@@ -59,7 +59,7 @@ public class ControllerImpl implements Controller {
             throw new IllegalArgumentException(String.format(ExceptionMessages.NO_FOOD_FOUND, foodType));
         }
 
-        Area area = areas.stream().filter(a -> a.getName().equals(areaName)).findFirst().get();
+        Area area = getAreaByName(areaName);
 
         switch (foodType) {
             case "Vegetable":
@@ -80,7 +80,7 @@ public class ControllerImpl implements Controller {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_ANIMAL_TYPE);
         }
 
-        Area area = areas.stream().filter(a -> a.getName().equals(areaName)).findFirst().get();
+        Area area = getAreaByName(areaName);
 
         if (area.getAnimals().size() == area.getCapacity()) {
             return ExceptionMessages.NOT_ENOUGH_CAPACITY;
@@ -109,14 +109,14 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String feedAnimal(String areaName) {
-        Area area = areas.stream().filter(a -> a.getName().equals(areaName)).findFirst().get();
+        Area area = getAreaByName(areaName);
         area.feed();
         return String.format(ConstantMessages.ANIMALS_FED, area.getAnimals().size());
     }
 
     @Override
     public String calculateKg(String areaName) {
-        Area area = areas.stream().filter(a -> a.getName().equals(areaName)).findFirst().get();
+        Area area = getAreaByName(areaName);
         double kg = area.getAnimals().stream().mapToDouble(Animal::getKg).sum();
         return String.format(ConstantMessages.KILOGRAMS_AREA, areaName, kg);
     }
@@ -128,5 +128,10 @@ public class ControllerImpl implements Controller {
             sb.append(area.getInfo());
         }
         return sb.toString();
+    }
+
+    private Area getAreaByName( String areaName){
+        Area area = areas.stream().filter(a -> a.getName().equals(areaName)).findFirst().get();
+        return area;
     }
 }
