@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CatHouseApp/CatHouseApp.iml" filepath="$PROJECT_DIR$/../CatHouseApp/CatHouseApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../Projects/ChristmasRaces/ChristmasRaces.iml" filepath="$PROJECT_DIR$/../../../Projects/ChristmasRaces/ChristmasRaces.iml" />
       <module fileurl="file://$PROJECT_DIR$/../FairyShop/FairyShop.iml" filepath="$PROJECT_DIR$/../FairyShop/FairyShop.iml" />
     </modules>
