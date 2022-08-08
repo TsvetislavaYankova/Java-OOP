@@ -1,10 +1,10 @@
 package catHouse.entities.cat;
 
-public class LonghaiCat extends BaseCat{
+public class LonghairCat extends BaseCat{
 
     //Can only live in LongHouse!
 
-    public LonghaiCat(String name, String breed, double price) {
+    public LonghairCat(String name, String breed, double price) {
         super(name, breed, price);
         this.setKilograms(9);
     }

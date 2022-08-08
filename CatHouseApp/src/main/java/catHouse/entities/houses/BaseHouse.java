@@ -63,7 +63,7 @@ public abstract class BaseHouse implements House {
     @Override
     public String getStatistics() {
         StringBuilder output = new StringBuilder()
-                .append(String.format("%s (%s):", this.name, this.getClass().getSimpleName()))
+                .append(String.format("%s %s:", this.name, this.getClass().getSimpleName()))
                 .append(System.lineSeparator())
                 .append("Cats: ");
 
@@ -102,12 +102,12 @@ public abstract class BaseHouse implements House {
 
     @Override
     public Collection<Cat> getCats() {
-        return Collections.unmodifiableCollection(this.cats);
+        return this.cats;
     }
 
     @Override
     public Collection<Toy> getToys() {
-        return Collections.unmodifiableCollection(this.toys);
+        return this.toys;
     }
 
     public int getCapacity() {
