@@ -80,7 +80,7 @@ public abstract class BaseHouse implements House {
                 .append(" Softness: ")
                 .append(this.sumSoftness());
 
-        return output.toString();
+        return output.toString().trim();
     }
 
     public void setCapacity(int capacity) {
